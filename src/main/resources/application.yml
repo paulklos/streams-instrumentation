@@ -1,0 +1,29 @@
+spring:
+  cloud:
+    function:
+      definition: demoProcess
+    stream:
+      kafka:
+        binder:
+          autoCreateTopics: true
+        streams:
+          binder:
+            functions:
+              demoProcess:
+                application-id: demo
+        bindings:
+          demoProcess-in-0:
+            consumer:
+              ack-mode: record
+              dlq-partitions: '1'
+              dlq-name: demo.dlq
+              enable-dlq: 'true'
+              auto-commit-on-error: 'true'
+              configuration:
+                key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+                value.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      bindings:
+        demoProcess-in-0:
+          destination: demo.in
+        demoProcess-out-0:
+          destination: demo.out

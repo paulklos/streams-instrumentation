@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <springProperty scope="context" name="eddy.tenant.name" source="eddy.tenant.name"/>
+    <springProperty scope="context" name="spring.application.name" source="spring.application.name"/>
+
+    <springProperty name="APPENDER_REF" source="logging.appender-ref"/>
+    <springProperty name="LOG_LEVEL" source="logging.root-level"/>
+
+    <appender name="JSON_TO_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="JSON_TO_CONSOLE" />
+    </root>
+
+    <logger name="org.springframework.cloud.config" level="INFO"/>
+    <logger name="org.apache.kafka.clients" level="WARN" />
+    <logger name="org.apache.kafka.streams" level="INFO" />
+    <logger name="io.opentelemetry" level="ERROR" />
+
+<!--    <statusListener class="ch.qos.logback.core.status.NopStatusListener"/>-->
+
+</configuration>
