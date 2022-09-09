@@ -26,8 +26,8 @@ This will open a shell in the broker container, where we can use the Kafka conso
 
     [appuser@broker ~]$ kafka-console-producer \
         --bootstrap-server localhost:9092 \
-        --topic demo.in 
-        --property parse.key=true 
+        --topic demo.in \
+        --property parse.key=true \ 
         --property key.separator=":"
 
 Now we can publish messages by simply typing `$key:$value`<enter>. For example
